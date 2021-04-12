@@ -22,84 +22,106 @@ namespace RoboApp.ConsoleApp
         private string[] vet2;
         public Robot(string b, string d, string a)
         {
-            this.userInput = a.ToCharArray();
-            this.vet2 = b.Split(' ');
-            this.vetorx = new int[int.Parse(vet2[0])];
-            this.vetory = new int[int.Parse(vet2[1])];
-            this.vet = d.Split();
-            this.posx = int.Parse(vet[0]);
-            this.posy = int.Parse(vet[1]);
-            this.IniDirection = char.Parse(vet[2]);
+            ConstructorInternMethod(b, d, a);
         }
+
+        
+
 
         public void DefineDirections()
         {
-            this.direction = "NLSO".ToCharArray();
-            this.local = "NLSO".IndexOf(IniDirection);
+            DefineDirInternMethod();
         }
-        
+
+        private void DefineDirInternMethod()
+        {
+            this.Direction = "NLSO".ToCharArray();
+            this.Local = "NLSO".IndexOf(IniDirection1);
+        }
+
         public void Output()
         {
-            for (int i = 0; i < userInput.Length; i++)
+            InternOutputMethod();
+        }
+
+
+        private void ConstructorInternMethod(string b, string d, string a)
+        {
+            this.UserInput = a.ToCharArray();
+            this.Vet2 = b.Split(' ');
+            this.Vetorx = new int[int.Parse(Vet2[0])];
+            this.Vetory = new int[int.Parse(Vet2[1])];
+            this.Vet = d.Split();
+            this.Posx = int.Parse(Vet[0]);
+            this.Posy = int.Parse(Vet[1]);
+            this.IniDirection1 = char.Parse(Vet[2]);
+        }
+
+
+        private void InternOutputMethod()
+        {
+            for (int i = 0; i < UserInput.Length; i++)
             {
-                if (userInput[i] == 'E' || userInput[i] == 'e')
+                if (UserInput[i] == 'E' || UserInput[i] == 'e')
                 {
-                    if (local!=0) {
-                        this.local = local - 1;
-                    }
-                    else if (local == 0)
+                    if (Local != 0)
                     {
-                        this.local = local + 3;
+                        this.Local = Local - 1;
+                    }
+                    else if (Local == 0)
+                    {
+                        this.Local = Local + 3;
                     }
                 }
 
-                if (userInput[i] == 'D' || userInput[i] == 'd')
+                if (UserInput[i] == 'D' || UserInput[i] == 'd')
                 {
-                    if (local != 3)
+                    if (Local != 3)
                     {
-                        this.local = local + 1;
+                        this.Local = Local + 1;
                     }
-                    else if (local == 3)
+                    else if (Local == 3)
                     {
-                        this.local = local - 3;
+                        this.Local = Local - 3;
                     }
                 }
 
-                if (userInput[i] == 'M' || userInput[i] == 'm')
+                if (UserInput[i] == 'M' || UserInput[i] == 'm')
                 {
-                    if (local == 0)
+                    if (Local == 0)
                     {
-                        posy++;
+                        Posy++;
                     }
-                    else if (local == 1)
+                    else if (Local == 1)
                     {
-                        posx++;
+                        Posx++;
                     }
-                    else if (local == 2)
+                    else if (Local == 2)
                     {
-                        posy--;
+                        Posy--;
                     }
-                    else if (local == 3)
+                    else if (Local == 3)
                     {
-                        posx--;
+                        Posx--;
                     }
                 }
             }
 
-           
 
-            if (posx <= vetorx.Length)
+
+            if (Posx <= Vetorx.Length)
             {
-                Console.Write(posx + " ");
+                Console.Write(Posx + " ");
             }
-            else {
+            else
+            {
                 Console.WriteLine(" ");
                 Console.WriteLine("Erro, posição final em X fora da área registrada.");
             }
 
-            if (posy <= vetory.Length)
+            if (Posy <= Vetory.Length)
             {
-                Console.Write(posy + " ");
+                Console.Write(Posy + " ");
             }
             else
             {
@@ -107,8 +129,21 @@ namespace RoboApp.ConsoleApp
                 Console.WriteLine("Erro: a posição final em Y está fora da área registrada.");
             }
 
-            Console.WriteLine(direction[local]);
+            Console.WriteLine(Direction[Local]);
         }
 
+
+        //Declaração de médotos "gets" e "sets"...
+
+        public char[] UserInput { get => userInput; set => userInput = value; }
+        public int Posx { get => posx; set => posx = value; }
+        public int Posy { get => posy; set => posy = value; }
+        public int Local { get => local; set => local = value; }
+        public string[] Vet { get => vet; set => vet = value; }
+        public string[] Vet2 { get => vet2; set => vet2 = value; }
+        public char IniDirection1 { get => IniDirection; set => IniDirection = value; }
+        public char[] Direction { get => direction; set => direction = value; }
+        public int[] Vetory { get => vetory; set => vetory = value; }
+        public int[] Vetorx { get => vetorx; set => vetorx = value; }
     }
 }
